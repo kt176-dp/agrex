@@ -34,7 +34,7 @@ export default function ExplorePage() {
       soilType: "Clay loam, Paddy soil",
       yield: "4-6 tons/acre",
       fertilizer: "Urea + DAP",
-      image: "/rice.jpg",
+      image: "/rice.webp",
       description: "Primary food crop in Asia, requires flooded conditions."
     },
     {
@@ -44,7 +44,7 @@ export default function ExplorePage() {
       soilType: "Sandy loam, Well-drained",
       yield: "8-12 tons/acre",
       fertilizer: "NPK 15-15-15",
-      image: "/corn.jpg",
+      image: "/corn.webp",
       description: "Versatile crop used for food, feed, and industrial products."
     },
     {
@@ -306,15 +306,19 @@ export default function ExplorePage() {
                     onClick={() => setSelectedCrop(crop)}
                   >
                     <div className="h-48 bg-gradient-to-br from-green-100 via-white to-blue-100 rounded-lg mb-4 flex items-center justify-center shadow-inner">
-                      <span className="text-5xl">🌾</span>
+                      {crop.image ? (
+                        <Image src={crop.image} alt={crop.name} width={220} height={140} className="object-cover rounded-lg w-full h-full" />
+                      ) : (
+                        <span className="text-5xl">🌾</span>
+                      )}
                     </div>
                     <h3 className="text-xl font-bold text-green-900 mb-2">{crop.name}</h3>
                     <p className="text-green-800/80 mb-3">{crop.description}</p>
                     <div className="space-y-2 text-sm">
-                      <div><span className="font-semibold">Climate:</span> {crop.climate}</div>
-                      <div><span className="font-semibold">Soil:</span> {crop.soilType}</div>
-                      <div><span className="font-semibold">Yield:</span> {crop.yield}</div>
-                      <div><span className="font-semibold">Fertilizer:</span> {crop.fertilizer}</div>
+                      <div><span className="text-green-800/80 font-semibold">Climate:{crop.climate}</span> </div>
+                      <div><span className="text-green-800/80 font-semibold">Soil:{crop.soilType}</span></div>
+                      <div><span className="text-green-800/80 font-semibold">Yield:{crop.yield}</span></div>
+                      <div><span className="text-green-800/80 font-semibold">Fertilizer:{crop.fertilizer}</span></div>
                     </div>
                   </div>
                 ))}
@@ -560,7 +564,11 @@ export default function ExplorePage() {
                 </button>
               </div>
               <div className="h-64 bg-gradient-to-br from-green-100 via-white to-blue-100 rounded-lg mb-6 flex items-center justify-center shadow-inner">
-                <span className="text-6xl">🌾</span>
+                {selectedCrop.image ? (
+                  <Image src={selectedCrop.image} alt={selectedCrop.name} width={320} height={200} className="object-cover rounded-lg w-full h-full" />
+                ) : (
+                  <span className="text-6xl">🌾</span>
+                )}
               </div>
               <div className="space-y-4">
                 <p className="text-green-800/80">{selectedCrop.description}</p>
